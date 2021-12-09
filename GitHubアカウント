@@ -1,0 +1,111 @@
+https://github.com/
+
+starmankami@gmail.com/kamioka1126
+
+アクセストークン(2021/12/9-30日間有効)　作成操作URL⇒https://docs.github.com/ja/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+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
+
+❏githubにDjangoプロジェクトを登録
+
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ pwd
+/home/kamioka/docker_django2/photoProject
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ ls
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ 
+
+①photoProjectマスターからファイルをコピー
+/home/kamioka/docker_django/photoProject
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ ls -l /home/kamioka/docker_django/photoProject
+合計 156
+-rw-rw-r-- 1 kamioka kamioka    615 12月  8 19:56 Dockerfile
+-rw-r--r-- 1 kamioka kamioka 131072 12月  8 20:12 db.sqlite3
+-rw-rw-r-- 1 kamioka kamioka    393 12月  8 20:39 docker-compose.yml
+-rwxr-xr-x 1 kamioka kamioka    668 12月  8 20:11 manage.py
+drwxr-xr-x 5 kamioka kamioka   4096 12月  9 10:10 photo
+drwxr-xr-x 3 kamioka kamioka   4096 12月  8 20:15 photoProject
+-rw-rw-r-- 1 kamioka kamioka     14 12月  8 19:56 requirements.txt
+drwxrwxr-x 2 kamioka kamioka   4096 12月  8 20:43 static
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ 
+
+cp /home/kamioka/docker_django/photoProject/Dockerfile .
+cp /home/kamioka/docker_django/photoProject/docker-compose.yml .
+cp /home/kamioka/docker_django/photoProject/requirements.txt .
+
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ ls
+Dockerfile  docker-compose.yml  requirements.txt  test.txt
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ 
+
+②プロジェクト作成＆dockerコンテナ起動
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ docker-compose run --rm web django-admin startproject photoProject .
+Creating network "photoproject_default" with the default driver
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ ls
+Dockerfile  docker-compose.yml  manage.py  photoProject  requirements.txt  test.txt
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ 
+
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ ls
+Dockerfile  docker-compose.yml  manage.py  photo  photoProject  requirements.txt  test.txt
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ 
+
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$  docker-compose up
+Creating photoproject_web_1 ... 
+Creating photoproject_web_1 ... done
+Attaching to photoproject_web_1
+web_1  | Performing system checks...
+web_1  | 
+web_1  | Watching for file changes with StatReloader
+web_1  | System check identified no issues (0 silenced).
+web_1  | 
+web_1  | You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+web_1  | Run 'python manage.py migrate' to apply them.
+web_1  | December 09, 2021 - 07:18:59
+web_1  | Django version 3.2.3, using settings 'photoProject.settings'
+web_1  | Starting development server at http://0.0.0.0:8000/
+web_1  | Quit the server with CONTROL-C.
+
+
+③ブラウザ
+http://127.0.0.1:8000/  ⇒　Djangoのウェルカム画面が表示されればOK
+
+④githubに登録する
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ git add .
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ git commit -m "First Commit"
+[master c0ebe8c] First Commit
+ 21 files changed, 246 insertions(+)
+ create mode 100644 Dockerfile
+ create mode 100644 db.sqlite3
+ create mode 100644 docker-compose.yml
+ create mode 100755 manage.py
+ create mode 100644 photo/__init__.py
+ create mode 100644 photo/admin.py
+ create mode 100644 photo/apps.py
+ create mode 100644 photo/migrations/__init__.py
+ create mode 100644 photo/models.py
+ create mode 100644 photo/tests.py
+ create mode 100644 photo/views.py
+ create mode 100644 photoProject/__init__.py
+ create mode 100644 photoProject/__pycache__/__init__.cpython-37.pyc
+ create mode 100644 photoProject/__pycache__/settings.cpython-37.pyc
+ create mode 100644 photoProject/__pycache__/urls.cpython-37.pyc
+ create mode 100644 photoProject/__pycache__/wsgi.cpython-37.pyc
+ create mode 100644 photoProject/asgi.py
+ create mode 100644 photoProject/settings.py
+ create mode 100644 photoProject/urls.py
+ create mode 100644 photoProject/wsgi.py
+ create mode 100644 requirements.txt
+
+
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ git push origin master
+Username for 'https://github.com': starmankami@gmail.com
+Password for 'https://starmankami@gmail.com@github.com':   ⇐アクセストークンを入力
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (21/21), done.
+Writing objects: 100% (24/24), 6.37 KiB | 652.00 KiB/s, done.
+Total 24 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/kkamioka/kkamioka.git
+   f3e7c1f..c0ebe8c  master -> master
+kamioka@kamioka-Endeavor-NJ3300:~/docker_django2/photoProject$ 
+
+
