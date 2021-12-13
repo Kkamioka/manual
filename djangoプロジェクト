@@ -1,0 +1,33 @@
+❏private_diary
+
+kamioka@kamioka-Endeavor-NJ3300:~/デスクトップ/docker_django3/env_django/.devcontainer$ pwd
+/home/kamioka/デスクトップ/docker_django3/env_django/.devcontainer
+kamioka@kamioka-Endeavor-NJ3300:~/デスクトップ/docker_django3/env_django/.devcontainer$ docker-compose up -d
+Creating network "devcontainer_default" with the default driver
+Creating django_db30 ... 
+Creating django_db30 ... done
+Creating django_web30 ... 
+Creating django_web30 ... done
+kamioka@kamioka-Endeavor-NJ3300:~/デスクトップ/docker_django3/env_django/.devcontainer$ docker-compose ps
+    Name                  Command              State           Ports         
+-----------------------------------------------------------------------------
+django_db30    docker-entrypoint.sh postgres   Up      5432/tcp              
+django_web30   python3                         Up      0.0.0.0:8000->8000/tcp
+kamioka@kamioka-Endeavor-NJ3300:~/デスクトップ/docker_django3/env_django/.devcontainer$ 
+kamioka@kamioka-Endeavor-NJ3300:~/デスクトップ/docker_django3/env_django/.devcontainer$ docker exec -it django_web30 bash
+user1@cdf213f08846:/tmp/work$ cd /home/user1/dev
+user1@cdf213f08846:~/dev$ ls
+db.sqlite3  diary  manage.py  private_diary
+user1@cdf213f08846:~/dev$ python3 manage.py runserver 0:8000
+2021-12-13 17:30:17,066	[INFO]	/usr/local/lib/python3.9/site-packages/django/utils/autoreload.py(Line:584)	Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 13, 2021 - 17:30:19
+Django version 2.2.2, using settings 'private_diary.settings'
+Starting development server at http://0:8000/
+Quit the server with CONTROL-C.
+
+☆
+http://localhost:8000
+
