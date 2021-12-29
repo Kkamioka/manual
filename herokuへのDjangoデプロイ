@@ -1,0 +1,129 @@
+①プロジェクトをワークフォルダへコピー
+
+②以下の状況で作業する
+
+kamioka@kamioka-HP-ProBook-430-G2:~/デスクトップ/heroku_work/private_diary/.devcontainer$ docker-compose ps
+    Name                  Command              State                    Ports                  
+-----------------------------------------------------------------------------------------------
+django_db32    docker-entrypoint.sh postgres   Up      5432/tcp                                
+django_web32   python3                         Up      0.0.0.0:8000->8000/tcp,:::8000->8000/tcp
+kamioka@kamioka-HP-ProBook-430-G2:~/デスクトップ/heroku_work/private_diary/.devcontainer$ docker exec -it django_web32 bash
+user1@e444a65411d0:/tmp/work$ cd /home/user1/dev
+user1@e444a65411d0:~/dev$ ls
+accounts  diary  manage.py  private_diary  static
+user1@e444a65411d0:~/dev$ 
+
+
+pip3 install gunicorn
+
+pip3 install django-heroku
+
+pip3 install dj-database-url
+
+2. 手順（ファイル作成編）
+③以下ファイルを作成(manage.pyがあるフォルダでやること)
+echo web: gunicorn プロジェクトフォルダー名.wsgi --log-file - > Procfile
+
+pip freeze > requirements.txt
+
+echo python-3.9.9 > runtime.txt
+
+echo -e __pycache__\\ndb.sqlite3\\n.DS_Store > .gitignore
+
+3. 手順(ファイル編集編)⇒ここからdockerでない端末で作業する
+cker-bash
+■settings.py
+DEBUG = False #Trueから変更
+
+SECRET_KEYをsettings.pyから削除しますが、次のステップで使うので一旦コピーしてください。
+SECRET_KEY = '69m15_$d!axoj8i*s2qs3$1ve_#zbux=)wfxk+dc647e90!put'
+
+ALLOWED_HOSTS = ['*'] #こちらでもokです
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #追加
+]
+
+
+settings.py
+import dj_database_url
+
+###
+省略
+###
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'name',
+        'USER': 'user',
+        'PASSWORD': '',
+        'HOST': 'host',
+        'PORT': '',
+    }
+}
+
+###
+省略
+###
+
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
+
+
+
+settings.py
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+import django_heroku #追加
+
+
+
+4. 手順(アップロード編)の前に
+
+
+git init
+git add .
+
+git commit -m "initial commit"
+
+
+
+5. 手順(アップロード編
+
+heroku login
+
+heroku create プロジェクト名
+
+heroku config:set SECRET_KEY='69m15_$d!axoj8i*s2qs3$1ve_#zbux=)wfxk+dc647e90!put' -a プロジェクト名
+
+heroku git:remote -a プロジェクト名
+
+heroku config:set DISABLE_COLLECTSTATIC=1
+
+git push heroku master
+
+heroku ps:scale web=1
+
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+
+heroku open
+
+
+
+
+
+
+
+
+
