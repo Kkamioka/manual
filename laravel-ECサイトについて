@@ -1,0 +1,65 @@
+■DIR
+kamioka@kamioka-HP-ProBook-430-G2:~/デスクトップ/env_laravel1$ 
+
+■web
+root@af06d4535f23:/var/www/html/techpit-clotes# php artisan serve --host 0.0.0.0
+[12-Jan-2022 14:27:51 Asia/Tokyo] Xdebug: [Step Debug] Could not connect to debugging client. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(
+Laravel development server started: http://0.0.0.0:8000
+[Wed Jan 12 14:27:51 2022] PHP 7.4.27 Development Server (http://0.0.0.0:8000) started
+
+■MYSQL
+kamioka@kamioka-HP-ProBook-430-G2:~/デスクトップ/env_laravel1/.devcontainer$ docker exec -it laravel1_db_3 bash
+root@b51ad24fb079:/# ls
+bin   dev			  entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
+boot  docker-entrypoint-initdb.d  etc		 lib   media  opt  root  sbin  sys  usr
+root@b51ad24fb079:/# mysql -u my -pmy
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| my                 |
++--------------------+
+2 rows in set (0.20 sec)
+
+mysql> use my;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_my    |
++-----------------+
+| books           |
+| failed_jobs     |
+| migrations      |
+| password_resets |
+| products        |
+| users           |
++-----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from products;
++----+----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------+------------+------------+
+| id | name                       | description                                                                                                                                                              | image         | price | created_at | updated_at |
++----+----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------+------------+------------+
+|  1 | Black T-shirt              | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/1.jpg |  4500 | NULL       | NULL       |
+|  2 | White T-shirt              | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/2.jpg |  4500 | NULL       | NULL       |
+|  3 | White T-shirt 2            | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/3.jpg |  6800 | NULL       | NULL       |
+|  4 | Black T-shirt Plain        | コットン素材を使用したクルーネックのカットソー。シンプルなデザインで、様々なスタイリングに合わせやすいアイテム。                                                         | /images/4.jpg |  4500 | NULL       | NULL       |
+|  5 | Black T-shirt 2            | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/5.jpg |  4500 | NULL       | NULL       |
+|  6 | Navy T-shirt               | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/6.jpg |  4500 | NULL       | NULL       |
+|  7 | Border T-shirt             | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/7.jpg |  6800 | NULL       | NULL       |
+|  8 | Border Long Sleeve T-shirt | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/8.jpg |  7800 | NULL       | NULL       |
+|  9 | Gray T-shirt               | コットン素材を使用したクルーネックのカットソー。                                                                                                                         | /images/9.jpg |  4500 | NULL       | NULL       |
++----+----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------+------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> 
+
+
