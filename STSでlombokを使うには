@@ -1,0 +1,4 @@
+1.pom.xmlにlombokのdependency追加
+2.プロジェクトフォルダを端末で開き、./mvnw installを実行する。
+
+sampleプロジェクト:Todolist

@@ -53,7 +53,7 @@ See https://docs.gradle.org/7.2/userguide/command_line_interface.html#sec:comman
 BUILD SUCCESSFUL in 6m 9s
 6 actionable tasks: 6 up-to-date
 bash-4.4# 
-bash-4.4# java -jar build/libs/hello-0.0.1-SNAPSHOT.jar
+bash-4.4# java -jar build/libs/sample-0.0.1-SNAPSHOT.jar
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
